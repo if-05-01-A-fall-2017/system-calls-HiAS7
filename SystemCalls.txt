@@ -1,0 +1,33 @@
+SYSTEM CALLS UNDERSTANDING:
+	fork: Creates a new process by duplicating the calling process. This new process is called a child process, whereas the calling process will then be its parent process.
+	parent and child process will have the same content, but will run in seperate memory spaces.
+	
+	stat: Simply shows various attributes of a file, such as size, name, etc...
+	
+	kill: Sends a signal to a process or a group of prcesses to end them.
+	
+	mmap: will map files into memory, which is a bit like using malloc to allocate space in my understanding.
+	
+	chmod: changes the mode bits of a file, for example chmod +x on a file will make it executable.
+	
+	
+	waitpid: will wait for a process to change state and suspend execution of the calling process until it happens.
+	
+SYSTEM CALLS FAIL:
+	fork: if there is not enough memory for the child process to be allocated, fork will fail.
+	
+	exec: if your executable was open for writing by one or more processes, it will fail.
+	
+	unlink: if the file you want to unlink is being used by the system or another process, you can't unlink it and it will fail.
+	
+	read: if you don't give a valid file descriptor, read will fail.
+	
+	mount: If the source is already mounted mount will fail.
+	
+	chmod: if the file is on a read-only filesystem, you can't  change it, causing chmod to fail.
+	
+	kill: the process needs permission to send the signal to its target processes. If it doesn't have it, kill will fail.
+	
+TRAPS:
+	A trap is used to switch from user mode to kernel mode. You have to first push your instructions onto the stack,
+	and then execute the trap, so that your instructions will be done.
